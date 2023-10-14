@@ -1,0 +1,268 @@
+{
+    "artists":[
+        {
+            "id": 1,
+            "name": "Anirudh",
+            "type": "artist",
+            "images": []
+        },
+        {
+            "id": 2,
+            "name": "Jubin Nautiyal",
+            "type": "artist",
+            "images": []
+        },
+        {
+            "id": 3,
+            "name": "Arijit Singh",
+            "type": "artist",
+            "images": []
+        },
+        {
+            "id": 4,
+            "name": "Jr. NTR",
+            "type": "actor",
+            "images": []
+        },
+        {
+            "id": 5,
+            "name": "S. S. Thaman",
+            "type": "artist",
+            "images": []
+        }
+    ],
+    "songs":
+        [
+            {
+              "id": 1,
+              "title": "Song Title 1",
+              "images": [
+                {
+                  "url": "image_url_1",
+                  "altText": "Image 1"
+                }
+              ],
+              "url": ["song_url_1"],
+              "duration": 240,
+              "albumId": 101,
+              "artists": [
+                {
+                  "name": "Anirudh Ravichandar"
+                }
+              ],
+              "trackNumber": 1,
+              "popularity": 90,
+              "explicit": false,
+              "releaseDate": "2023-01-15",
+              "releaseDatePrecision": "day"
+            },
+            {
+              "id": 2,
+              "title": "Song Title 2",
+              "images": [
+                {
+                  "url": "image_url_2",
+                  "altText": "Image 2"
+                }
+              ],
+              "url": ["song_url_2"],
+              "duration": 220,
+              "albumId": 102,
+              "artists": [
+                {
+                  "name": "Anirudh Ravichandar"
+                }
+              ],
+              "trackNumber": 2,
+              "popularity": 85,
+              "explicit": false,
+              "releaseDate": "2023-02-20",
+              "releaseDatePrecision": "day"
+            },
+            {
+              "id": 3,
+              "title": "Song Title 3",
+              "images": [
+                {
+                  "url": "image_url_3",
+                  "altText": "Image 3"
+                }
+              ],
+              "url": ["song_url_3"],
+              "duration": 200,
+              "albumId": 103,
+              "artists": [
+                {
+                  "name": "Anirudh Ravichandar"
+                }
+              ],
+              "trackNumber": 3,
+              "popularity": 88,
+              "explicit": false,
+              "releaseDate": "2023-03-25",
+              "releaseDatePrecision": "day"
+            },
+            {
+              "id": 4,
+              "title": "Song Title 4",
+              "images": [
+                {
+                  "url": "image_url_4",
+                  "altText": "Image 4"
+                }
+              ],
+              "url": ["song_url_4"],
+              "duration": 210,
+              "albumId": 104,
+              "artists": [
+                {
+                  "name": "Anirudh Ravichandar"
+                }
+              ],
+              "trackNumber": 4,
+              "popularity": 92,
+              "explicit": false,
+              "releaseDate": "2023-04-30",
+              "releaseDatePrecision": "day"
+            },
+            {
+              "id": 5,
+              "title": "Song Title 5",
+              "images": [
+                {
+                  "url": "image_url_5",
+                  "altText": "Image 5"
+                }
+              ],
+              "url": ["song_url_5"],
+              "duration": 260,
+              "albumId": 105,
+              "artists": [
+                {
+                  "name": "Anirudh Ravichandar"
+                }
+              ],
+              "trackNumber": 5,
+              "popularity": 87,
+              "explicit": false,
+              "releaseDate": "2023-05-10",
+              "releaseDatePrecision": "day"
+            },
+            {
+              "id": 6,
+              "title": "Song Title 6",
+              "images": [
+                {
+                  "url": "image_url_6",
+                  "altText": "Image 6"
+                }
+              ],
+              "url": ["song_url_6"],
+              "duration": 230,
+              "albumId": 106,
+              "artists": [
+                {
+                  "name": "Jubin Nautiyal"
+                }
+              ],
+              "trackNumber": 1,
+              "popularity": 91,
+              "explicit": false,
+              "releaseDate": "2023-06-15",
+              "releaseDatePrecision": "day"
+            },
+            {
+              "id": 7,
+              "title": "Song Title 7",
+              "images": [
+                {
+                  "url": "image_url_7",
+                  "altText": "Image 7"
+                }
+              ],
+              "url": ["song_url_7"],
+              "duration": 245,
+              "albumId": 107,
+              "artists": [
+                {
+                  "name": "Jubin Nautiyal"
+                }
+              ],
+              "trackNumber": 2,
+              "popularity": 86,
+              "explicit": false,
+              "releaseDate": "2023-07-20",
+              "releaseDatePrecision": "day"
+            },
+            {
+              "id": 8,
+              "title": "Song Title 8",
+              "images": [
+                {
+                  "url": "image_url_8",
+                  "altText": "Image 8"
+                }
+              ],
+              "url": ["song_url_8"],
+              "duration": 215,
+              "albumId": 108,
+              "artists": [
+                {
+                  "name": "Jubin Nautiyal"
+                }
+              ],
+              "trackNumber": 3,
+              "popularity": 89,
+              "explicit": false,
+              "releaseDate": "2023-08-25",
+              "releaseDatePrecision": "day"
+            },
+            {
+              "id": 9,
+              "title": "Song Title 9",
+              "images": [
+                {
+                  "url": "image_url_9",
+                  "altText": "Image 9"
+                }
+              ],
+              "url": ["song_url_9"],
+              "duration": 195,
+              "albumId": 109,
+              "artists": [
+                {
+                  "name": "Jubin Nautiyal"
+                }
+              ],
+              "trackNumber": 4,
+              "popularity": 93,
+              "explicit": false,
+              "releaseDate": "2023-09-30",
+              "releaseDatePrecision": "day"
+            },
+            {
+              "id": 10,
+              "title": "Song Title 10",
+              "images": [
+                {
+                  "url": "image_url_10",
+                  "altText": "Image 10"
+                }
+              ],
+              "url": ["song_url_10"],
+              "duration": 270,
+              "albumId": 110,
+              "artists": [
+                {
+                  "name": "Jubin Nautiyal"
+                }
+              ],
+              "trackNumber": 5,
+              "popularity": 90,
+              "explicit": false,
+              "releaseDate": "2023-10-10",
+              "releaseDatePrecision": "day"
+            }
+          ]
+          
+}

@@ -1,9 +1,9 @@
 export interface Image{
-    id: string;
+    id?: string;
     url: string;
-    width: number;
-    height: number;
-    alt: string;
-    title: string;
-    description: string;
+    width?: number;
+    height?: number;
+    altText: string;
+    title?: string;
+    description?: string;
 }

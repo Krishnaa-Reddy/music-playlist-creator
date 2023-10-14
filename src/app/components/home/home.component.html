@@ -5,12 +5,17 @@
 </div>
 <br>
 
-<h4 *ngIf="loading">Loading...</h4>
-<h4 *ngIf="deleting">Deleting...</h4>
-
-<ng-template #noArtists>No artists available.</ng-template>
-<ng-container *ngIf="artistsAvailable; else noArtists">
-    <div *ngFor="let artist of artistsSubject | async"><strong>{{artist}}</strong></div>
+<ng-container *ngIf="artists$ | async as artistsData" [ngSwitch]="artistsData.status">
+    <ng-container *ngSwitchCase="status.IDLE">Click the above button to see all the artists.</ng-container>
+    <ng-container *ngSwitchCase="status.FAILED">No artists available.</ng-container>
+    <ng-container *ngSwitchCase="status.LOADING">Loading...</ng-container>
+    <ng-container *ngSwitchCase="status.SUCCESS">
+        <ul>
+            <li *ngFor="let artist of artistsData.artists">
+                <strong>{{artist.name}}</strong>
+            </li>
+        </ul>
+    </ng-container>
 </ng-container>
     
 

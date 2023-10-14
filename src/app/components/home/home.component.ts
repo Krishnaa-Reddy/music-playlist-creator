@@ -1,48 +1,62 @@
-import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
-import { SongService } from 'src/app/services/song.service';
+import { Component, OnDestroy } from '@angular/core';
+import {
+  BehaviorSubject,
+  Subscription,
+  catchError,
+  finalize,
+  of,
+  tap,
+} from 'rxjs';
+import { OP_STATUS } from 'src/app/enum/state';
+import { Artist } from 'src/app/interfaces/artist';
+import { ArtistsData } from 'src/app/interfaces/home-state';
+import { ArtistService } from 'src/app/services/artist.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
-  artists: string[] = ['anirudh'];
-  loading: boolean = false;
-  deleting: boolean = false;
+export class HomeComponent implements OnDestroy {
+  readonly status = OP_STATUS;
+  artists$ = new BehaviorSubject<ArtistsData>({ status: OP_STATUS.IDLE });
+  subscription!: Subscription;
 
-  artists$: Observable<string[]> = of(this.artists);
-  artistsSubject = new Subject<string[]>();
-  artistsAvailable: boolean = false;
-
-  constructor(private songService: SongService) {}
+  constructor(private artistService: ArtistService) {}
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   getArtists() {
-    this.loading = true;
-    this.artistsAvailable = true;
-    if (!this.artists.length) {
-      this.artistsAvailable = false;
-      this.loading = false;
-      return;
-    }
-    setTimeout(() => {
-      this.loading = false;
-      this.artistsSubject.next(this.artists);
-    }, 2000);
+    this.subscription = this.artistService.artists$
+      .pipe(
+        tap(() => {
+          console.log("Loading");
+          this.artists$.next({ status: OP_STATUS.LOADING });
+        }),
+        catchError((error) => {
+          console.log("Error");
+          this.artists$.next({ status: OP_STATUS.FAILED });
+          return of(error);
+        }),
+        finalize(() => {
+          console.log("Done");
+          this.artists$.next({ status: OP_STATUS.DONE });
+        })
+      )
+      .subscribe({
+        next: (response: Artist[]) => {
+          console.log("Next");
+          
+          this.artists$.next({
+            status: OP_STATUS.SUCCESS,
+            artists: response,
+          });
+        },
+      });
   }
 
   deleteArtist() {
-    this.deleting = true;
-    if (!this.artistsAvailable) {
-      this.deleting = false;
-      return;
-    }
-    setTimeout(() => {
-      this.artists = [...this.artists.slice(0, -1)];
-      this.artistsSubject.next(this.artists);
-      this.artistsAvailable = this.artists.length > 0;
-      this.deleting = false;
-    }, 2000);
+    console.log('Will be deleted');
   }
 }
