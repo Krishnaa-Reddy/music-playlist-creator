@@ -2,16 +2,14 @@ import { Artist } from "./artist";
 import { Image } from "./image";
 
 export interface Song{
-    id: number;
+    id: string;
     title: string;
     images: Array<Image>;
-    url: Array<string>;
+    url: string;
     duration: number;
     albumId: number;
-    artists: Array<Artist>;
+    artists: Array<string>;
     trackNumber: number;
-    popularity: number;
-    explicit: boolean;
     releaseDate: string;
     releaseDatePrecision: string;
 }

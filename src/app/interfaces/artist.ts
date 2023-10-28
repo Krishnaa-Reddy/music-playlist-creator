@@ -1,9 +1,8 @@
 import { Image } from "./image";
 
 export interface Artist{
-    id?: number;
+    id: string;
     name: string;
-    type?: string;
+    type: string;
     images?: Array<Image>;
-    url?: Array<string>;
 }

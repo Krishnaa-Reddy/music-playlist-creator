@@ -1,14 +1,12 @@
-import { Component, OnDestroy } from '@angular/core';
 import {
-  BehaviorSubject,
-  Subscription,
-  catchError,
-  finalize,
-  of,
-  tap,
-} from 'rxjs';
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
+import { Observable, fromEvent, map, startWith, switchMap, take } from 'rxjs';
 import { OP_STATUS } from 'src/app/enum/state';
-import { Artist } from 'src/app/interfaces/artist';
 import { ArtistsData } from 'src/app/interfaces/home-state';
 import { ArtistService } from 'src/app/services/artist.service';
 
@@ -17,46 +15,38 @@ import { ArtistService } from 'src/app/services/artist.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnDestroy {
-  readonly status = OP_STATUS;
-  artists$ = new BehaviorSubject<ArtistsData>({ status: OP_STATUS.IDLE });
-  subscription!: Subscription;
+export class HomeComponent implements AfterViewInit {
+  @ViewChild('myButton', { read: ElementRef })
+  private myButtonRef!: ElementRef<HTMLButtonElement>;
 
-  constructor(private artistService: ArtistService) {}
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  artists$!: Observable<ArtistsData>;
+  public curStatus = OP_STATUS;
+
+  constructor(
+    private artistService: ArtistService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngAfterViewInit(): void {
+    this.artists$ = fromEvent(this.myButtonRef.nativeElement, 'click').pipe(
+      take(1),
+      switchMap(this.getArtists),
+      startWith({ status: OP_STATUS.IDLE })
+    );
+    this.cdr.detectChanges();
   }
 
-  getArtists() {
-    this.subscription = this.artistService.artists$
-      .pipe(
-        tap(() => {
-          console.log("Loading");
-          this.artists$.next({ status: OP_STATUS.LOADING });
-        }),
-        catchError((error) => {
-          console.log("Error");
-          this.artists$.next({ status: OP_STATUS.FAILED });
-          return of(error);
-        }),
-        finalize(() => {
-          console.log("Done");
-          this.artists$.next({ status: OP_STATUS.DONE });
-        })
-      )
-      .subscribe({
-        next: (response: Artist[]) => {
-          console.log("Next");
-          
-          this.artists$.next({
-            status: OP_STATUS.SUCCESS,
-            artists: response,
-          });
-        },
-      });
-  }
+  getArtists = () => this.artistService.artists$.pipe(
+    map((artists) => {
+      return {
+        artists: artists,
+        status: OP_STATUS.SUCCESS,
+      };
+    }),
+    startWith({ status: OP_STATUS.LOADING })
+  );
 
-  deleteArtist() {
-    console.log('Will be deleted');
+  deleteArtist = () => {
+    // #TODO
   }
 }
