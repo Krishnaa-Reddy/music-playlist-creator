@@ -3,12 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatCardModule} from '@angular/material/card';
+import { ButtonModule } from 'primeng/button';
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { spotifyInterceptor } from './interceptors/spotify.interceptor';
 
 @NgModule({
   declarations: [
@@ -19,12 +17,13 @@ import {MatCardModule} from '@angular/material/card';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSlideToggleModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatCardModule
+    ButtonModule
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(
+      withInterceptors([spotifyInterceptor])
+    )
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

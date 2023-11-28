@@ -1,11 +1,22 @@
-<h1 clas>
+<h1>
   {{title}}
 </h1>
-
-<h4 style="border: 1px solid rgb(117, 0, 128); margin: 12px; display: flex; align-items: center; justify-content: center;">
+<h4>
   Everything is in its setup stage, will keep adding features.
-
-  <h3>
-    This vercel deployment looks amazing.
-  </h3>
 </h4>
+<h3>
+  This vercel deployment looks amazing.
+</h3>
+
+<div class="card flex justify-content-center">
+  <p-button label="Check" icon="pi pi-check" (onClick)="doSomething()" ></p-button>
+
+</div>
+
+<section>
+  <b>Show me some data: </b>
+
+  <ng-container *ngIf="artist$ | async as artist">
+    {{artist | json}}
+  </ng-container>
+</section>
